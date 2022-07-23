@@ -1,0 +1,38 @@
+<div class="wrap">
+  <header>
+    <span>USD {{usd|number:'1.2-2'}} EUR {{eur|number:'1.2-2'}}</span>
+  </header>
+  <section>
+    <p>CURRENCY CONVERTER</p>
+    <div class="container">
+      <mat-form-field floatLabel="auto" hideRequiredMarker appearance="fill">
+        <mat-label>Amount</mat-label>
+        <input matInput required type="number" [(ngModel)]="amount" (input)="getConvertedValue()">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>From</mat-label>
+        <mat-select [(ngModel)]="from">
+          <mat-option *ngFor="let from of currencyArr" [value]="from"
+                      (click)="getConvertedValue()">{{from}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="change-currencies" (click)="changeCurrencies()">
+        <span class="material-icons">swap_horiz</span>
+      </div>
+
+      <mat-form-field appearance="fill">
+        <mat-label>To</mat-label>
+        <mat-select [(ngModel)]="to">
+          <mat-option *ngFor="let to of currencyArr" [value]="to"
+                      (click)="getConvertedValue()">{{to}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-card>
+        {{convertedAmount|number:'1.2-2'}}
+      </mat-card>
+    </div>
+  </section>
+</div>
+
+
